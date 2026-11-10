@@ -1,0 +1,307 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"><title>The 10 Dimensions — Venus Volcanic Wasteland</title><style>
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 50% -20%,#24335d 0%,#0b1024 58%,#070b18 100%);color:#e9edf7;font:14px 'Courier New',monospace;padding:22px 14px}#wrap{max-width:1060px;margin:auto;filter:drop-shadow(0 18px 38px #0008)}header,#controls{border-radius:0 0 9px 9px;background:linear-gradient(180deg,#182441,#101a31);border:1px solid #536b8b;padding:13px 16px;display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;letter-spacing:1px}header{border-radius:9px 9px 0 0;font-size:13px}canvas{width:100%;height:auto;display:block;image-rendering:pixelated;touch-action:none;border:1px solid #617a9b;background:#101a31}button{background:linear-gradient(180deg,#29496a,#172d49);color:#f4f5f7;border:1px solid #8ba8bd;border-radius:4px;padding:12px 16px;font:inherit;letter-spacing:1px;cursor:pointer;box-shadow:inset 0 1px #ffffff22,0 3px #080f1d}button:hover{background:linear-gradient(180deg,#3d6688,#24425f);transform:translateY(-1px)}button:active{transform:translateY(1px);box-shadow:none}#overlay{position:absolute;inset:0;background:linear-gradient(135deg,#08101deF,#111a2eeF);display:grid;place-items:center;padding:16px}.panel{background:linear-gradient(145deg,#1a2942,#101a2d);border:1px solid #7790a8;border-radius:6px;padding:26px;max-width:590px;width:min(100%,590px);line-height:1.7;box-shadow:0 18px 55px #0009,inset 0 1px #ffffff12}.panel p{color:#cbd5e1}h1{font-size:clamp(30px,7vw,52px);color:#f0e6cb;margin:8px 0;letter-spacing:2px}.pink{color:#b9d9e7}.gold{color:#e7c98b}#game{position:relative}.pad{display:flex;gap:8px}.pad button{min-width:58px;min-height:48px}#controls button[data-skill]{font-size:11px;padding:9px 10px;min-height:42px}#controls button[data-skill]{font-size:11px;padding:9px 10px;min-height:42px}.skillStatus{color:#a8d9d2;font-size:11px;text-align:center;width:100%}.hint{font-size:11px;color:#aab7e9;text-align:center;width:100%}.bossIntro{color:#9fc6d6;letter-spacing:2px;font-size:12px}.question{font-size:18px;line-height:1.5;color:#fff}.answers{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:16px 0}.answers button{text-align:left;min-height:52px;background:#1a2858}.answers button:hover{background:#345875}.fieldlabel{display:block;color:#a8d9d2;font-size:12px;letter-spacing:1px;margin:12px 0 6px}.panel input,.panel select{width:100%;padding:13px;background:#0b1425;color:#f4f5f7;border:1px solid #7897ad;border-radius:4px;font:16px 'Courier New',monospace;margin-bottom:8px}.panel input:focus,.panel select:focus{outline:2px solid #a8d9d2}.calcfields{display:grid;grid-template-columns:1fr 1fr;gap:12px}.healthline{display:flex;justify-content:space-between;gap:12px;color:#ffd878;font-size:13px}@media(max-width:600px){.answers{grid-template-columns:1fr}.question{font-size:16px}}
+#musicToggle{font-size:11px;padding:8px 12px;border-color:#d87962;color:#ffd9c4;background:linear-gradient(180deg,#542432,#28121d)}
+canvas{box-shadow:inset 0 0 55px #17050b;animation:canvasPulse 7s ease-in-out infinite}
+@keyframes canvasPulse{0%,100%{filter:saturate(1) brightness(1)}50%{filter:saturate(1.12) brightness(1.04)}}
+</style></head><body><div id="wrap"><header><b>✦ THE 10 DIMENSIONS · VENUS</b><span id="hud">♥ ♥ ♥ · ★ 0/12</span></header><div id="game"><canvas id="c" width="960" height="520"></canvas><div id="overlay"><div class="panel" id="panel"><div class="pink">RETRO SCI-FI PLATFORMER · PLAYTEST 1.0 · VENUS TERRAIN BRIEFING</div><h1>VENUS — THE SCARLET DOME</h1><p>Captain, Venus is a volcanic obstacle course beneath a dense, crushing atmosphere. The route crosses isolated basalt platforms suspended above glowing magma channels. The ground is unstable, the heat distorts visibility, and horned creatures guard the upper ridge.</p><p><b>Terrain assessment</b><br>• <b>Molten fissures:</b> there is no safe continuous floor. Time each jump between floating rock slabs; falling into the lava resets your position and costs a heart.<br>• <b>Unstable platforms:</b> some slabs sit at different heights. Build momentum, jump early, and avoid firing while you need precise landings.<br>• <b>Ember packs:</b> EMP is useful when several fire-creatures crowd a narrow landing. Shield is safer when a jump forces you through an enemy. Scan helps reveal armour before engaging.</p><p><b>Venus field note</b> Surface temperatures average about 467°C, and surface pressure is roughly 93 times Earth’s sea-level pressure. The lava channels in this game are stylised volcanic hazards, not a claim that the entire surface is covered by active flowing lava.</p><p><b>Bunny’s recommendation</b> Keep all three skills available. Prioritise survival over clearing every enemy. The three skill buttons stay together in one row.</p><p><b>Controls</b> A/D or ←/→ move · Space jump · X/K fire · 1 Shield · 2 EMP · 3 Scan.</p><button id="start">START VENUS RUN ▶</button><button id="resume">CONTINUE</button></div></div></div><div id="controls"><div class="pad"><button data-k="left">◀</button><button data-k="right">▶</button></div><span class="hint">MOVE · JUMP · CAPTAIN J + BUNNY · CROSS THE MAGMA · REACH THE SUMMIT</span><button id="musicToggle" type="button">♫ MUSIC OFF</button><button data-k="jump">⬆ JUMP</button><button data-k="shoot">✦ FIRE</button><div class="skillbar" aria-label="Bunny skills"><button data-skill="shield">1 · SHIELD</button><button data-skill="emp">2 · EMP</button><button data-skill="scan">3 · SCAN</button></div></div><p class="hint">Desktop: A/D move · Space jump · X/K fire · 1 Shield · 2 EMP · 3 Scan · P pause</p></div>
+<script>
+const VENUS_MODE=true;
+const c=document.querySelector('#c'),x=c.getContext('2d'),ov=document.querySelector('#overlay'),panel=document.querySelector('#panel'),hud=document.querySelector('#hud'),keys={left:false,right:false,jump:false,shoot:false};let s={x:50,y:390,vx:0,vy:0,cam:0,hp:3,stars:0,mem:0,boss:5,paused:true,face:1,ammo:0},raf=0,last=0;
+const plats=[[0,420,155,18],[220,390,125,18],[405,430,125,18],[590,385,125,18],[775,420,125,18],[960,380,125,18],[1145,430,125,18],[1330,390,125,18],[1515,425,125,18],[1700,375,125,18],[1885,420,125,18],[2070,385,125,18],[2255,430,125,18],[2440,380,125,18],[2625,420,125,18],[2810,385,125,18],[2995,425,125,18],[3180,380,125,18],[3365,420,235,18]];
+let bullets=[], enemyShots=[], bunnyShots=[], enemies=[], particles=[], bunny={x:28,y:350,fireAt:0};let skillState={shield:0,emp:0,scan:0},scanUntil=0,shieldUntil=0,empFlash=0;let stars=Array.from({length:12},(_,i)=>({x:125+i*285,y:[345,320,365,330][i%4],t:false})),enemy=850;
+function resetEnemies(){
+ enemies=[
+  {x:300,y:376,type:'crocodile',hp:2,dir:1,min:570,max:690,speed:52,alive:true},
+  {x:960,y:355,type:'drone',hp:1,dir:1,min:880,max:1120,speed:70,alive:true},
+  {x:1450,y:376,type:'crocodile',hp:2,dir:-1,min:1320,max:1510,speed:58,alive:true},
+  {x:1770,y:290,type:'drone',hp:2,dir:1,min:1680,max:1900,speed:78,alive:true},
+  {x:2300,y:390,type:'brute',hp:3,dir:-1,min:2200,max:2390,speed:35,alive:true},
+  {x:2580,y:350,type:'drone',hp:1,dir:-1,min:2500,max:2770,speed:82,alive:true},
+  {x:3020,y:385,type:'crocodile',hp:2,dir:1,min:2970,max:3170,speed:62,alive:true},
+   {x:3240,y:290,type:'drone',hp:2,dir:-1,min:3160,max:3330,speed:74,alive:true},
+  {x:1180,y:390,type:'crocodile',hp:2,dir:1,min:1150,max:1260,speed:66,alive:true},
+  {x:1990,y:390,type:'brute',hp:3,dir:1,min:1940,max:2080,speed:32,alive:true},
+  {x:2860,y:300,type:'drone',hp:2,dir:1,min:2800,max:2940,speed:88,alive:true},
+  {x:3400,y:385,type:'crocodile',hp:2,dir:-1,min:3360,max:3480,speed:60,alive:true}
+ ];
+ bullets=[];enemyShots=[];bunnyShots=[];particles=[];bunny={x:s.x-34,y:s.y-40,fireAt:0};skillState={shield:0,emp:0,scan:0};scanUntil=0;shieldUntil=0;empFlash=0;skillState={shield:0,emp:0,scan:0};scanUntil=0;shieldUntil=0;empFlash=0;
+}
+resetEnemies();
+
+const bossQuestions = [
+ {type:"number",topic:"1 · EXPECTED VALUE / VOLCANIC MINING INVESTMENT",q:"A mining consortium is evaluating a one-year extraction project near a volcanic ridge. Geological surveys imply three mutually exclusive outcomes: a 30% probability of VND 150 billion net operating cash flow, a 50% probability of VND 65 billion, and a 20% probability of a VND 80 billion operating loss. The project requires VND 28 billion in initial capital expenditure today. Ignore taxes, discounting and any salvage value. Calculate the expected net value of the project in VND billion.",unit:"VND billion",answer:33.5,tolerance:.05,steps:"Weight each outcome by its probability, add the expected operating cash flow, then subtract the initial investment."},
+ {type:"number",topic:"2 · BAYESIAN INFERENCE / SENSOR RELIABILITY",q:"Two independent thermal sensors monitor a magma-processing facility. Sensor A is installed at 70% of sites and raises a false alarm on 2% of normal readings. Sensor B is installed at the remaining 30% of sites and raises a false alarm on 6% of normal readings. A randomly selected normal reading triggers an alarm. Calculate the probability, in percent, that the alarm came from Sensor B. Round to one decimal place.",unit:"%",answer:56.3,tolerance:.15,steps:"Use Bayes’ theorem. The denominator is the total probability of an alarm across both sensor groups."},
+ {type:"multi",topic:"3 · OPTIMISATION / HEAT-RESISTANT MATERIALS",q:"A manufacturer sells heat-resistant panels in a competitive market. Its inverse demand curve is P = 100 − 0.4Q, while total cost is TC = 20Q + 200. Assume the firm chooses output to maximise profit and can sell all units at the market price implied by the inverse demand curve. Derive marginal revenue, set it equal to marginal cost, and calculate the profit-maximising quantity and corresponding price.",fields:[["Optimal quantity Q","units",100],["Optimal price P","VND / unit",60]],tolerances:[.05,.05],steps:"Derive TR = P×Q, differentiate with respect to Q, set MR = MC = 20, then substitute Q into inverse demand."},
+ {type:"multi",topic:"4 · COURNOT COMPETITION / VOLCANIC ENERGY MARKET",q:"Two energy firms extract geothermal power and compete by choosing quantities simultaneously. Market inverse demand is P = 150 − 3Q, where Q = q₁ + q₂. Each firm has constant marginal cost of VND 30 per unit and zero fixed cost. Each firm maximises its own profit, taking the rival’s output as given. Assuming a symmetric Cournot-Nash equilibrium, calculate each firm’s equilibrium output and the resulting market price.",fields:[["Output per firm q*","units",13.3333],["Market price P*","VND / unit",70]],tolerances:[.05,.05],steps:"Write each firm's profit, derive its best response, impose q₁ = q₂, then calculate total output and market price."},
+ {type:"strategy",topic:"5 · GAME THEORY / EVACUATION COORDINATION",q:"Two independent operators control evacuation gates during a volcanic alert. Each simultaneously chooses OPEN EARLY or HOLD. If both open early, congestion reduces each operator’s payoff to 4. If one opens early while the other holds, the early operator receives 7 and the holding operator receives 1. If both hold, both receive 6. Each operator maximises its own payoff. Select Operator A’s action in the Nash equilibrium and calculate A’s equilibrium payoff. You must provide both the strategic choice and the numerical payoff.",options:["OPEN EARLY","HOLD"],correct:"OPEN EARLY",field:["Operator A equilibrium payoff","payoff units",4],tolerance:.01,steps:"Compare A's payoff from each action conditional on B opening early and conditional on B holding. Check whether the resulting actions are mutual best responses."},
+ {type:"number",topic:"6 · INVESTMENT APPRAISAL / DISCOUNTED CASH FLOW",q:"A geothermal facility requires an initial investment of VND 45 billion. One year from now, its net cash flow will be VND 100 billion with probability 0.35, VND 70 billion with probability 0.45, or VND 10 billion with probability 0.20. The annual discount rate is 12%. Assume all cash flows occur exactly one year from today and there are no additional costs. Calculate expected NPV in VND billion, rounded to two decimal places.",unit:"VND billion",answer:16.16,tolerance:.08,steps:"Calculate the probability-weighted expected cash flow, discount it by 1.12 and subtract the initial outlay."},
+ {type:"number",topic:"7 · MICROECONOMICS / PRICE ELASTICITY",q:"A specialist supplier estimates demand for its protective equipment as Q = 320 − 5P. At the current market price P = 40, calculate the point price elasticity of demand using (dQ/dP)×(P/Q). Preserve the negative sign and round your result to two decimal places. Do not report the absolute value.",unit:"elasticity",answer:-1.67,tolerance:.02,steps:"Evaluate quantity at P = 40, identify the slope dQ/dP, and apply the point-elasticity formula."},
+ {type:"number",topic:"8 · ECONOMETRICS / OLS FORECAST",q:"An economist estimates a cross-sectional OLS model for industrial output: Output = 18 + 2.4(Investment) − 0.8(Energy Cost) + ε. All variables are measured in VND billion index-equivalent units. A plant plans Investment = 6 and faces Energy Cost = 5. Calculate the model’s predicted output, excluding the residual term. Enter the numerical result only.",unit:"index-equivalent units",answer:28.4,tolerance:.02,steps:"Substitute the two explanatory-variable values into the fitted regression equation. Do not add a residual."}
+];
+let bossActive=false, qIndex=0, combo=0, hintUsed=false;
+function showBossIntro(){
+ bossActive=true;qIndex=0;combo=0;hintUsed=false;s.paused=true;ov.style.display='grid';
+ panel.innerHTML='<div class="bossIntro">VENUS · FINAL ENCOUNTER</div><h2 class="gold">THE INFERNAL CAT · HORNED FIRE BEAST</h2><p>“You have crossed the scarlet caldera and recovered the four signals. Now face the Infernal Cat, the horned guardian that sleeps beneath Venus’s volcanic crown. Its fire is older than the ruins.”</p><p><b>Bunny</b><br>“No more lucky guessing, Captain. This arena contains numerical problems, multi-step calculations and an economic strategy decision. You will need to show your working through the intermediate values. I shall refrain from applauding prematurely.”</p><div class="healthline"><span>CAPTAIN J ♥ ♥ ♥</span><span>INFERNAL CAT ◆ ◆ ◆ ◆ ◆</span></div><p class="hint">Eight possible challenges · five successful hits required · incorrect answers trigger a counterattack.</p><button id="duelStart">ENTER THE ARENA ▶</button>';
+ document.querySelector('#duelStart').onclick=showQuestion;
+}
+function showQuestion(){
+ s.paused=true;ov.style.display='grid';const q=bossQuestions[qIndex%bossQuestions.length];
+ let response='';
+ if(q.type==='number')response='<label class="fieldlabel">YOUR CALCULATED RESULT ('+q.unit+')</label><input id="answerNumber" type="number" step="any" placeholder="Enter your calculated result" />';
+ if(q.type==='multi')response='<div class="calcfields">'+q.fields.map((f,i)=>'<label class="fieldlabel">'+f[0]+' ('+f[1]+')</label><input type="number" step="any" id="answer'+i+'" placeholder="Step '+(i+1)+' result" />').join('')+'</div>';
+ if(q.type==='strategy')response='<label class="fieldlabel">SELECT YOUR STRATEGY</label><select id="strategyAnswer"><option value="">Choose an action</option>'+q.options.map(o=>'<option>'+o+'</option>').join('')+'</select><label class="fieldlabel">'+q.field[0]+' ('+q.field[1]+')</label><input type="number" step="any" id="strategyPayoff" placeholder="Calculate the payoff" />';
+ panel.innerHTML='<div class="bossIntro">INTELLECTUAL DUEL · CHALLENGE '+(qIndex+1)+' / '+bossQuestions.length+'</div><h2 class="gold">THE INFERNAL CAT</h2><div class="healthline"><span>CAPTAIN J · '+('♥ '.repeat(s.hp))+'</span><span>KING · '+('◆ '.repeat(s.boss))+'</span></div><p class="pink">'+q.topic+'</p><p class="question">'+q.q+'</p>'+response+'<p class="hint">'+q.steps+'</p><button id="submitAnswer">SUBMIT CALCULATION ▶</button><button id="hintBtn" '+(hintUsed?'disabled':'')+'>ASK BUNNY FOR A HINT</button><p class="hint" id="hintText"></p>';
+ document.querySelector('#submitAnswer').onclick=()=>submitBossAnswer(q);
+ const hb=document.querySelector('#hintBtn');if(hb)hb.onclick=()=>{if(hintUsed)return;hintUsed=true;hb.disabled=true;const hints=["Use the probability-weighted sum of operating cash flows, then subtract the initial investment.","Apply Bayes' theorem: P(B|D) = P(D|B)P(B) / P(D).","Total revenue is P×Q. Differentiate revenue with respect to Q to obtain marginal revenue.","Write firm 1's profit as (P−MC)q₁ and substitute Q = q₁ + q₂ before differentiating.","A Nash equilibrium requires each firm's action to be a best response to the other firm's action.","Expected NPV equals expected year-end cash flow divided by 1+r, less the initial outlay.","The derivative dQ/dP is the slope coefficient. Evaluate Q at the stated price before substituting.","Use the fitted equation only. The residual is excluded from the predicted value."];document.querySelector('#hintText').textContent='Bunny: '+hints[qIndex%hints.length]};
+}
+function submitBossAnswer(q){
+ let correct=false;
+ if(q.type==='number'){let v=Number(document.querySelector('#answerNumber').value);correct=document.querySelector('#answerNumber').value!==''&&Number.isFinite(v)&&Math.abs(v-q.answer)<=q.tolerance;}
+ if(q.type==='multi'){let vals=q.fields.map((_,i)=>document.querySelector('#answer'+i).value);correct=vals.every((v,i)=>v!==''&&Number.isFinite(Number(v))&&Math.abs(Number(v)-q.fields[i][2])<=q.tolerances[i]);}
+ if(q.type==='strategy'){let choice=document.querySelector('#strategyAnswer').value,pay=document.querySelector('#strategyPayoff').value;correct=choice===q.correct&&pay!==''&&Math.abs(Number(pay)-q.field[2])<=q.tolerance;}
+ resolveBossAnswer(correct);
+}
+function resolveBossAnswer(correct){
+ if(correct){s.boss=Math.max(0,s.boss-1);combo++;}else{s.hp=Math.max(0,s.hp-1);combo=0;}
+ const feedback=correct?'DIRECT HIT! The Infernal Cat loses 1 HP.':'COUNTERATTACK! Captain J loses 1 HP.';
+ panel.innerHTML='<div class="bossIntro">'+(correct?'✦ CALCULATION ACCEPTED':'✦ RESULT NOT ACCEPTED')+'</div><h2 class="'+(correct?'gold':'pink')+'">'+feedback+'</h2><p>'+(correct?'Your result is consistent with the model. The King takes the hit.':'The King strikes back. Check the assumptions, equations and intermediate steps before the next challenge.')+'</p><div class="healthline"><span>CAPTAIN J · '+('♥ '.repeat(s.hp)||'—')+'</span><span>KING · '+('◆ '.repeat(s.boss)||'DEFEATED')+'</span></div><p class="hint">'+(combo>1?'COMBO ×'+combo:'Bunny: “No multiple-choice safety net. I respect the commitment.”')+'</p><button id="nextRound">NEXT CHALLENGE ▶</button>';
+ document.querySelector('#nextRound').onclick=()=>{
+  qIndex++;
+  if(s.boss<=0){bossActive=false;save();modal('THE INFERNAL CAT DEFEATED','The Venus signals are secure. The Infernal Cat retreats into the molten caldera.<br><br>Stars collected: '+s.stars+'/12<br><b>Bunny:</b> “Well played, Captain. Those were calculations, not educated guesses.”','CLAIM VENUS BADGE',()=>modal('VENUS BADGE UNLOCKED','Venus cleared. The next coordinates are waiting.','RETURN TO TITLE',()=>location.reload()));return;}
+  if(s.hp<=0){s.hp=3;qIndex=0;combo=0;panel.innerHTML='<div class="bossIntro">SUIT REBOOT</div><h2 class="pink">THE KING COUNTERATTACKED</h2><p>Captain J’s suit has been restored. The Infernal Cat keeps the damage it has already taken, but the duel restarts from Challenge 1.</p><p><b>Bunny:</b> “A setback, not a verdict. Reconsider the evidence, Captain.”</p><button id="retry">RETRY DUEL ▶</button>';document.querySelector('#retry').onclick=showQuestion;return;}
+  showQuestion();
+ };
+}
+
+function save(){localStorage.setItem('venus-run-v10',JSON.stringify({s,stars:stars.map(a=>a.t)}))}
+function load(){try{let d=JSON.parse(localStorage.getItem('venus-run-v10'));if(d){Object.assign(s,d.s);stars.forEach((a,i)=>a.t=!!d.stars[i])}}catch(e){}}
+function modal(title,body,btn='CONTINUE ▶',fn=resume){s.paused=true;ov.style.display='grid';panel.innerHTML='<div class="pink">MEMORY SIGNAL DETECTED</div><h2 class="gold">'+title+'</h2><p>'+body+'</p><button id="ok">'+btn+'</button>';document.querySelector('#ok').onclick=fn}
+
+// Procedural retro soundtrack. Browsers require a user gesture before audio can start.
+let audioCtx=null,musicTimer=null,musicOn=false,step=0;
+const melody=[0,7,10,7,3,7,12,10,0,7,10,14,12,10,7,3];
+function musicTick(){
+ if(!audioCtx||!musicOn)return;
+ const now=audioCtx.currentTime,root=55,semi=melody[step%melody.length];
+ const bass=audioCtx.createOscillator(),bg=audioCtx.createGain();
+ bass.type='triangle';bass.frequency.value=root*(step%4===0?1:0.5);bg.gain.setValueAtTime(.0001,now);bg.gain.exponentialRampToValueAtTime(.075,now+.018);bg.gain.exponentialRampToValueAtTime(.0001,now+.22);bass.connect(bg);bg.connect(audioCtx.destination);bass.start(now);bass.stop(now+.23);
+ if(step%2===0){const lead=audioCtx.createOscillator(),lg=audioCtx.createGain();lead.type='square';lead.frequency.value=220*Math.pow(2,semi/12);lg.gain.setValueAtTime(.0001,now);lg.gain.exponentialRampToValueAtTime(.022,now+.012);lg.gain.exponentialRampToValueAtTime(.0001,now+.17);lead.connect(lg);lg.connect(audioCtx.destination);lead.start(now);lead.stop(now+.18)}
+ if(step%4===0){const pad=audioCtx.createOscillator(),pg=audioCtx.createGain();pad.type='sine';pad.frequency.value=110*Math.pow(2,[0,3,5,7][Math.floor(step/4)%4]/12);pg.gain.setValueAtTime(.0001,now);pg.gain.exponentialRampToValueAtTime(.018,now+.04);pg.gain.exponentialRampToValueAtTime(.0001,now+.42);pad.connect(pg);pg.connect(audioCtx.destination);pad.start(now);pad.stop(now+.43)}
+ step++;
+}
+async function toggleMusic(force){
+ if(!audioCtx){const AC=window.AudioContext||window.webkitAudioContext;if(!AC)return;audioCtx=new AC()}
+ if(audioCtx.state==='suspended')await audioCtx.resume();
+ musicOn=force===undefined?!musicOn:force;
+ if(musicTimer){clearInterval(musicTimer);musicTimer=null}
+ if(musicOn){step=0;musicTick();musicTimer=setInterval(musicTick,145)}
+ const b=document.querySelector('#musicToggle');if(b)b.textContent=musicOn?'♫ MUSIC ON':'♫ MUSIC OFF';
+}
+document.querySelector('#musicToggle').addEventListener('click',()=>toggleMusic());
+
+function resume(){ov.style.display='none';s.paused=false;last=performance.now();if(!raf)requestAnimationFrame(loop)}
+document.querySelector('#start').onclick=()=>{toggleMusic(true);s={x:45,y:381,vx:0,vy:0,cam:0,hp:3,stars:0,mem:0,boss:5,paused:false,face:1,ammo:0};resetEnemies();stars.forEach(a=>a.t=false);bossActive=false;qIndex=0;hintUsed=false;resume()};
+document.querySelector('#resume').onclick=()=>{load();resume()};
+function key(e,v){let k=e.key.toLowerCase();if(k==='a'||k==='arrowleft')keys.left=v;if(k==='d'||k==='arrowright')keys.right=v;if(k===' '||k==='w'||k==='arrowup'){keys.jump=v;e.preventDefault()}if(k==='x'||k==='k')keys.shoot=v;if(v&&k==='1')useBunnySkill('shield');if(v&&k==='2')useBunnySkill('emp');if(v&&k==='3')useBunnySkill('scan');if(v&&k==='p'){s.paused=!s.paused;ov.style.display=s.paused?'grid':'none';if(s.paused)panel.innerHTML='<h2>PAUSED</h2><button id="un">RESUME</button>';let b=document.querySelector('#un');if(b)b.onclick=resume;else{last=performance.now();requestAnimationFrame(loop)}}}
+
+function useBunnySkill(skill){
+ const now=Date.now();
+ if(skill==='shield'){
+  if(now<skillState.shield)return;
+  shieldUntil=now+4200;skillState.shield=now+14000;
+  s.invulnUntil=Math.max(s.invulnUntil||0,shieldUntil);
+  skillNotice('BUNNY SHIELD','A protective field surrounds Captain J for 4.2 seconds.');
+ }else if(skill==='emp'){
+  if(now<skillState.emp)return;
+  skillState.emp=now+18000;empFlash=now+650;
+  enemies.filter(e=>e.alive&&Math.abs(e.x-s.x)<310).forEach(e=>{e.hp-=2;if(e.hp<=0){e.alive=false;s.kills=(s.kills||0)+1}});
+  skillNotice('EMP PULSE','Bunny disables nearby enemies and deals 2 damage to each one.');
+ }else if(skill==='scan'){
+  if(now<skillState.scan)return;
+  skillState.scan=now+12000;scanUntil=now+5000;
+  skillNotice('TACTICAL SCAN','Nearby enemies and their remaining armour are highlighted for 5 seconds.');
+ }
+}
+function skillNotice(title,body){
+ const old=document.querySelector('#skillToast');if(old)old.remove();
+ const el=document.createElement('div');el.id='skillToast';el.style.cssText='position:absolute;left:50%;top:12px;transform:translateX(-50%);background:#13283a;border:1px solid #9fcbd0;color:#e7e2d2;padding:9px 14px;z-index:5;text-align:center;max-width:90%;font-size:12px;box-shadow:0 5px 20px #0008';
+ el.innerHTML='<b>'+title+'</b><br>'+body;document.querySelector('#game').appendChild(el);setTimeout(()=>el.remove(),1900);
+}
+addEventListener('keydown',e=>key(e,true));addEventListener('keyup',e=>key(e,false));
+document.querySelectorAll('[data-skill]').forEach(b=>b.addEventListener('click',()=>useBunnySkill(b.dataset.skill)));
+function refreshSkillButtons(){const now=Date.now();document.querySelectorAll('[data-skill]').forEach(b=>{const t=skillState[b.dataset.skill]||0,remaining=Math.max(0,Math.ceil((t-now)/1000));b.classList.toggle('cooldown',remaining>0);const labels={shield:'1 · SHIELD',emp:'2 · EMP',scan:'3 · SCAN'};b.textContent=labels[b.dataset.skill]+(remaining?' · '+remaining+'s':'')})}
+setInterval(refreshSkillButtons,250);document.querySelectorAll('[data-k]').forEach(b=>{let k=b.dataset.k;b.onpointerdown=e=>{e.preventDefault();keys[k]=true};['pointerup','pointerleave','pointercancel'].forEach(v=>b.addEventListener(v,()=>keys[k]=false))});
+
+function draw(){
+ const W=960,H=520,cam=s.cam;
+ // Venus: hostile volcanic wasteland, buried in dense crimson cloud.
+ let g=x.createLinearGradient(0,0,0,H);g.addColorStop(0,'#260812');g.addColorStop(.34,'#641522');g.addColorStop(.7,'#a52b1c');g.addColorStop(1,'#26090f');x.fillStyle=g;x.fillRect(0,0,W,H);
+ // Thick sulphur-cloud bands obscure the distant horizon.
+ for(let i=0;i<7;i++){let yy=48+i*38,shift=(cam*.055+i*91)%1120;x.globalAlpha=.10+(i%3)*.035;x.fillStyle=i%2?'#f16a42':'#8c2630';x.beginPath();x.moveTo(-40,yy+18);for(let xx=-40;xx<=1040;xx+=80)x.quadraticCurveTo(xx+35,yy-17+Math.sin((xx+i*71)*.018)*12,xx+80,yy+13+Math.cos((xx+i*37)*.013)*9);x.lineTo(1040,yy+54);x.lineTo(-40,yy+54);x.fill()}x.globalAlpha=1;
+ // A huge, dim sun filtered through the toxic atmosphere.
+ let halo=x.createRadialGradient(770,92,8,770,92,230);halo.addColorStop(0,'#ff9a5aaa');halo.addColorStop(.38,'#ef4b3280');halo.addColorStop(1,'#ff321800');x.fillStyle=halo;x.fillRect(530,-120,480,430);
+ x.globalAlpha=.9;x.fillStyle='#d94a35';x.beginPath();x.arc(770,78,68,0,Math.PI*2);x.fill();x.globalAlpha=.28;x.fillStyle='#ffb16b';x.beginPath();x.arc(750,58,42,0,Math.PI*2);x.fill();x.globalAlpha=1;
+ // Ash, sparks and drifting volcanic debris instead of stars.
+ for(let i=0;i<105;i++){let sx=(i*173-cam*.16+12000)%W,sy=(i*67+Math.sin(Date.now()/900+i)*8)%315;x.globalAlpha=.18+(i%4)*.11;x.fillStyle=i%6===0?'#ffc078':'#d96a50';x.fillRect(sx,sy,i%9===0?2:1,i%8===0?2:1)}x.globalAlpha=1;
+ // Layered volcanic ridges, broken calderas and jagged obsidian spires.
+ x.fillStyle='#210912';x.beginPath();x.moveTo(0,366);for(let i=0;i<=14;i++){let xx=i*78;x.lineTo(xx,268+Math.sin(i*1.7)*31+(i%3)*17)}x.lineTo(W,445);x.lineTo(0,445);x.fill();
+ x.fillStyle='#35101a';x.beginPath();x.moveTo(0,390);for(let i=0;i<=16;i++){let xx=i*66;x.lineTo(xx,318+Math.sin(i*2.1+1)*24)}x.lineTo(W,450);x.lineTo(0,450);x.fill();
+ // Tall black volcanic needles and broken crater rims drift past in the distance.
+ for(let i=0;i<13;i++){let bx=((i*113-cam*.29+5000)%1160)-80,base=421-(i%3)*10,h=58+(i*29)%104;x.fillStyle=i%2?'#260b14':'#40111b';x.beginPath();x.moveTo(bx-25,base);x.lineTo(bx-7,base-h*.72);x.lineTo(bx+1,base-h);x.lineTo(bx+13,base-h*.58);x.lineTo(bx+29,base);x.closePath();x.fill();x.fillStyle='#8d3027';x.globalAlpha=.38;x.fillRect(bx-2,base-h+8,3,h*.42);x.globalAlpha=1}
+ // Occasional lava vents glow through cracks in the distant rock.
+ for(let i=0;i<8;i++){let vx=((i*149-cam*.22+4200)%1080)-50;x.globalAlpha=.55;x.fillStyle='#ff6a28';x.fillRect(vx,407,18,3);x.fillStyle='#ffbd54';x.fillRect(vx+5,404,6,2)}x.globalAlpha=1;
+ // Molten lava sea: there is no safe continuous floor between basalt slabs.
+ let lava=x.createLinearGradient(0,430,0,520);lava.addColorStop(0,'#ff5a16');lava.addColorStop(.28,'#d92712');lava.addColorStop(.7,'#6f1018');lava.addColorStop(1,'#210912');x.fillStyle=lava;x.fillRect(0,430,W,90);
+ for(let i=0;i<28;i++){let lx=(i*47+Date.now()*.055)%W,ly=438+(i%5)*15;x.globalAlpha=.3+(i%3)*.12;x.fillStyle=i%2?'#ffd05a':'#ff8a24';x.fillRect(lx,ly,18+(i%4)*8,2+(i%2)*2)}x.globalAlpha=1;
+ for(let a of plats){let px=a[0]-cam;if(px+a[2]<-10||px>W+10)continue;
+   x.fillStyle='#291d22';x.fillRect(px,a[1]+5,a[2],a[3]+8);x.fillStyle='#554044';x.fillRect(px,a[1],a[2],a[3]);
+   x.fillStyle='#ff8a42';x.fillRect(px,a[1],a[2],3);x.fillStyle='#8f3a2c';x.fillRect(px,a[1]+a[3]-4,a[2],4);
+   x.fillStyle='#a95a3e';for(let tx=px+12;tx<px+a[2]-8;tx+=31)x.fillRect(tx,a[1]+7,10,3);
+   x.globalAlpha=.65;x.fillStyle='#ffcc68';x.fillRect(px+5,a[1]-2,a[2]-10,1);x.globalAlpha=1;
+ }
+ // Collectible stars, small warm glints
+ stars.forEach(a=>{if(!a.t){let px=a.x-cam;if(px>-10&&px<970){x.save();x.translate(px,a.y+Math.sin(Date.now()/280+a.x)*3);x.fillStyle='#e9d19a';x.shadowColor='#f1d8a3';x.shadowBlur=10;x.beginPath();for(let k=0;k<10;k++){let r=k%2?4:9,ang=-Math.PI/2+k*Math.PI/5;x.lineTo(Math.cos(ang)*r,Math.sin(ang)*r)}x.closePath();x.fill();x.restore()}}});
+ // Patrol drone with mechanical silhouette
+ let ex=enemy-cam;if(ex>-45&&ex<1000){x.fillStyle='#111d29';x.fillRect(ex-4,440,38,5);x.fillStyle='#8ca6a5';x.fillRect(ex+3,435,26,13);x.fillStyle='#d0b58b';x.fillRect(ex+11,439,10,4);x.fillStyle='#9bbac0';x.fillRect(ex+7,431,18,3);x.fillStyle='#d2a06e';x.fillRect(ex+15,429,4,2)}
+ // THE INFERNAL CAT — a colossal horned feline rising from the magma.
+ if(s.x>3150){
+  const bob=Math.sin(Date.now()/430)*6, pulse=.75+.25*Math.sin(Date.now()/170);
+  let molten=x.createLinearGradient(0,360,0,520);molten.addColorStop(0,'#ff6a20');molten.addColorStop(.4,'#d92a16');molten.addColorStop(1,'#360b12');x.fillStyle=molten;x.fillRect(0,430,W,90);
+  for(let i=0;i<24;i++){let lx=(i*53+Date.now()*.06)%W,ly=438+(i%4)*17;x.globalAlpha=.3+(i%3)*.1;x.fillStyle='#ffb34b';x.fillRect(lx,ly,20,3)}x.globalAlpha=1;
+  x.save();x.translate(710,0);
+  // Vast shoulders and mane silhouette
+  x.fillStyle='#210912';x.beginPath();x.ellipse(165,386+bob,260,150,0,Math.PI,Math.PI*2);x.fill();
+  x.fillStyle='#7e2028';x.beginPath();x.ellipse(165,365+bob,235,145,0,Math.PI,Math.PI*2);x.fill();
+  // Fiery mane spikes
+  for(let i=0;i<23;i++){let xx=-60+i*20,yy=300+Math.sin(i*.8)*25+bob;x.fillStyle=i%2?'#b92b28':'#f04b2d';x.beginPath();x.moveTo(xx-15,yy+50);x.lineTo(xx+2,yy-22-(i%4)*7);x.lineTo(xx+20,yy+50);x.closePath();x.fill()}
+  // Huge horned head and pointed ears
+  x.fillStyle='#9c252b';x.beginPath();x.moveTo(-70,315);x.lineTo(-125,220);x.lineTo(-38,257);x.quadraticCurveTo(80,185,205,250);x.lineTo(290,205);x.lineTo(275,310);x.quadraticCurveTo(310,400,180,423);x.lineTo(20,415);x.quadraticCurveTo(-85,390,-70,315);x.fill();
+  x.strokeStyle='#e65b36';x.lineWidth=5;x.stroke();
+  // Curved black-red horns
+  x.fillStyle='#260d17';x.beginPath();x.moveTo(5,264);x.quadraticCurveTo(-70,190,-42,120);x.quadraticCurveTo(-5,190,48,232);x.closePath();x.fill();x.strokeStyle='#ff9a4b';x.lineWidth=3;x.stroke();
+  x.fillStyle='#260d17';x.beginPath();x.moveTo(185,248);x.quadraticCurveTo(245,155,322,148);x.quadraticCurveTo(268,222,240,286);x.closePath();x.fill();x.strokeStyle='#ff9a4b';x.stroke();
+  // Horn runes
+  for(let i=0;i<5;i++){x.strokeStyle='#ffb24d';x.lineWidth=2;x.beginPath();x.moveTo(-30+i*12,188-i*3);x.lineTo(-19+i*12,196-i*3);x.stroke();x.beginPath();x.moveTo(244+i*10,206-i*5);x.lineTo(255+i*10,212-i*5);x.stroke()}
+  // Face mask, cheeks and muzzle
+  x.fillStyle='#d34a35';x.beginPath();x.ellipse(110,323+bob,145,104,0,0,Math.PI*2);x.fill();
+  x.fillStyle='#ff8150';x.beginPath();x.ellipse(110,366+bob,90,49,0,0,Math.PI*2);x.fill();
+  // Glowing eyes
+  for(let ex of [45,174]){x.fillStyle='#2b0b15';x.beginPath();x.ellipse(ex,304+bob,34,19,0,0,Math.PI*2);x.fill();x.fillStyle='#ffd04f';x.shadowColor='#ff4b24';x.shadowBlur=26;x.beginPath();x.ellipse(ex,304+bob,24,13,0,0,Math.PI*2);x.fill();x.shadowBlur=0;x.fillStyle='#230a10';x.fillRect(ex-3,293+bob,6,22)}
+  // Nose, whiskers, fangs and open infernal mouth
+  x.fillStyle='#290b14';x.beginPath();x.moveTo(94,351+bob);x.lineTo(126,351+bob);x.lineTo(110,366+bob);x.fill();
+  x.fillStyle='#260810';x.beginPath();x.ellipse(110,391+bob,63,29,0,0,Math.PI*2);x.fill();
+  for(let i=0;i<5;i++){let tx=65+i*22;x.fillStyle='#fff0c7';x.beginPath();x.moveTo(tx,375+bob);x.lineTo(tx+7,394+bob);x.lineTo(tx+14,375+bob);x.fill()}
+  x.strokeStyle='#ffc18a';x.lineWidth=2;for(let j=0;j<3;j++){x.beginPath();x.moveTo(28,365+j*9+bob);x.lineTo(-15,354+j*12+bob);x.stroke();x.beginPath();x.moveTo(190,365+j*9+bob);x.lineTo(232,354+j*12+bob);x.stroke()}
+  // Giant paw reaching over the arena, claws lit by lava
+  x.fillStyle='#a62b2c';x.beginPath();x.ellipse(315,430+bob,112,64,-.2,0,Math.PI*2);x.fill();
+  for(let i=0;i<4;i++){x.fillStyle='#f2c49a';x.beginPath();x.moveTo(270+i*28,450+bob);x.lineTo(285+i*28,478+bob);x.lineTo(292+i*28,448+bob);x.fill()}
+  // Ember aura
+  let aura=x.createRadialGradient(120,330,30,120,330,280);aura.addColorStop(0,'#ff5a2a44');aura.addColorStop(1,'#ff3b1800');x.fillStyle=aura;x.fillRect(-180,80,600,440);
+  x.restore();
+  for(let i=0;i<22;i++){let xx=570+i*17,yy=430+Math.sin(Date.now()/120+i)*9;x.fillStyle=i%2?'#ffd06a':'#ff7134';x.globalAlpha=.5;x.fillRect(xx,yy,3,12+(i%4)*6)}x.globalAlpha=1;
+  x.fillStyle='#ffd18a';x.font='bold 13px monospace';x.fillText('THE INFERNAL CAT',665,74);x.fillStyle='#ffe1c0';x.font='11px monospace';x.fillText('HORNED FIRE BEAST · GUARDIAN OF THE SCARLET DOME',575,94);
+  x.fillStyle='#2a101b';x.fillRect(585,108,330,13);x.fillStyle='#ed4a42';x.fillRect(587,110,326*(s.boss/5),9);x.strokeStyle='#ffc18a';x.strokeRect(585,108,330,13);
+ }
+ // Small enemy waves: walkers, hover drones and a heavier armored unit.
+ enemies.forEach(e=>{if(!e.alive)return;let ex=e.x-cam,ey=e.y;if(ex<-45||ex>1000)return;
+  x.save();x.translate(ex,ey);
+  if(e.type==='crocodile'){
+   x.fillStyle='#260b16';x.fillRect(-23,-7,43,15);x.fillStyle='#a8322d';x.fillRect(-19,-13,34,10);
+   x.fillStyle='#ff7040';x.fillRect(-15,-16,5,4);x.fillRect(-4,-17,5,5);x.fillRect(7,-15,5,4);
+   x.fillStyle='#d34b32';x.fillRect(12,-7,18,7);x.fillRect(25,-5,9,5);
+   x.fillStyle='#c4b18a';x.fillRect(23,0,11,3);x.fillStyle='#d7c99d';x.fillRect(26,-2,2,2);x.fillRect(31,-2,2,2);
+   x.fillStyle='#d9b17a';x.fillRect(13,-11,3,3);x.fillStyle='#1b2620';x.fillRect(14,-10,1,2);
+   x.fillStyle='#6f1c24';x.fillRect(-15,7,7,8);x.fillRect(8,7,7,8);x.fillRect(-18,11,11,3);x.fillRect(6,11,11,3);
+   x.fillStyle='#8a9a70';x.fillRect(-21,-2,7,2);
+  }else if(e.type==='drone'){
+   x.fillStyle='#101923';x.beginPath();x.arc(0,0,15,0,Math.PI*2);x.fill();x.fillStyle='#526f7d';x.fillRect(-18,-4,36,8);
+   x.fillStyle='#d58c73';x.beginPath();x.arc(0,0,5,0,Math.PI*2);x.fill();x.fillStyle='#d5c39c';x.fillRect(-5,-20,10,3);
+  }else{
+   x.fillStyle='#111a25';x.fillRect(-22,-19,44,38);x.fillStyle='#5c7880';x.fillRect(-18,-23,36,8);x.fillStyle='#d1a16f';x.fillRect(-8,-13,16,8);x.fillStyle='#819b9b';x.fillRect(-18,17,10,8);x.fillRect(8,17,10,8);
+  }
+  x.fillStyle='#17232c';x.fillRect(-18,-29,36,4);x.fillStyle='#d08d78';x.fillRect(-18,-29,36*(e.hp/(e.type==='brute'?3:e.type==='crocodile'?3:(e.x===1770||e.x===3240?2:1))),3);
+  x.restore();
+ });
+ // Captain J's energy bolts
+ bullets.forEach(b=>{let bx=b.x-cam;x.fillStyle='#a8e8ed';x.shadowColor='#8ceaff';x.shadowBlur=12;x.fillRect(bx,b.y,13,3);x.shadowBlur=0});
+ // Tactical scan reveals enemy armour bars and outlines.
+ if(Date.now()<scanUntil){enemies.forEach(e=>{if(e.alive){let ex=e.x-cam;x.strokeStyle='#8de5d9';x.lineWidth=2;x.strokeRect(ex-25,e.y-24,50,48);x.fillStyle='#d6e8d7';x.font='10px monospace';x.fillText('ARMOUR '+e.hp,ex-25,e.y-31)}})}
+ // Bunny's support pulses and small impact sparks.
+ bunnyShots.forEach(b=>{let bx=b.x-cam;x.fillStyle='#a9f2ed';x.shadowColor='#8fffea';x.shadowBlur=13;x.beginPath();x.arc(bx,b.y,5,0,Math.PI*2);x.fill();x.shadowBlur=0});
+ particles.forEach(p=>{x.globalAlpha=Math.max(0,p.life*2);x.fillStyle='#e7c98b';x.fillRect(p.x-cam,p.y,3,3)});x.globalAlpha=1;
+ // Shield field around Captain J while Bunny's protection is active.
+ if(Date.now()<shieldUntil){x.strokeStyle='#8de8e5';x.lineWidth=3;x.globalAlpha=.65+.2*Math.sin(Date.now()/90);x.beginPath();x.ellipse(px+17,py+20,31,28,0,0,Math.PI*2);x.stroke();x.globalAlpha=1}
+ if(Date.now()<empFlash){x.strokeStyle='#b2f2e8';x.lineWidth=4;x.globalAlpha=(empFlash-Date.now())/650;x.beginPath();x.arc(px+16,py+18,120*(1-(empFlash-Date.now())/650),0,Math.PI*2);x.stroke();x.globalAlpha=1}
+ // Captain J: compact, readable explorer sprite
+ let px=s.x-cam,py=s.y;
+ x.globalAlpha=(s.invulnUntil>Date.now()&&Math.floor(Date.now()/90)%2===0)?.38:1;x.fillStyle='#080f18';x.fillRect(px+4,py+35,25,5);
+ x.fillStyle='#b9c6c2';x.fillRect(px+7,py+8,19,23);x.fillStyle='#d2b98d';x.fillRect(px+8,py,17,15);
+ x.fillStyle='#263e4b';x.fillRect(px+7,py+4,20,7);x.fillStyle='#d8e1d8';x.fillRect(px+12,py+7,3,3);x.fillRect(px+20,py+7,3,3);
+ x.fillStyle='#6f9292';x.fillRect(px+4,py+28,11,10);x.fillRect(px+19,py+28,11,10);
+ x.fillStyle='#c6a477';x.fillRect(px+5,py+37,11,3);x.fillRect(px+19,py+37,11,3);x.fillStyle='#9fcbd0';x.fillRect(px+(s.face>0?25:0),py+18,8,4);x.globalAlpha=1;
+ // Bunny companion: a small hovering scout with expressive pixel eyes.
+ let rabbitX=bunny.x-cam, rabbitY=bunny.y;
+ if(rabbitX>-50&&rabbitX<1010){
+  x.save();x.globalAlpha=.24;x.fillStyle='#8ce9e5';x.beginPath();x.ellipse(rabbitX,rabbitY+20,19,5,0,0,Math.PI*2);x.fill();x.globalAlpha=1;
+  let bob=Math.sin(Date.now()/150)*2;
+  x.fillStyle='#182735';x.fillRect(rabbitX-12,rabbitY-8+bob,24,22);
+  x.fillStyle='#9ac8c6';x.fillRect(rabbitX-10,rabbitY-10+bob,20,18);
+  x.fillStyle='#d5e5d9';x.fillRect(rabbitX-8,rabbitY-7+bob,16,13);
+  x.fillStyle='#a8d9d2';x.fillRect(rabbitX-9,rabbitY-23+bob,6,16);x.fillRect(rabbitX+3,rabbitY-24+bob,6,17);
+  x.fillStyle='#263e50';x.fillRect(rabbitX-6,rabbitY-2+bob,4,5);x.fillRect(rabbitX+3,rabbitY-2+bob,4,5);
+  x.fillStyle='#b4f0e5';x.fillRect(rabbitX-5,rabbitY-1+bob,2,2);x.fillRect(rabbitX+4,rabbitY-1+bob,2,2);
+  x.fillStyle='#d6b98d';x.fillRect(rabbitX-2,rabbitY+6+bob,4,2);
+  x.fillStyle='#77c9d2';x.fillRect(rabbitX-6,rabbitY+15+bob,12,3);
+  x.restore();
+ }
+ // Animated ember motes and wavering heat bands add depth to the volcanic atmosphere.
+ for(let i=0;i<34;i++){
+   let ex=(i*137-Date.now()*.035*(1+i%3)*.35+12000)%W;
+   let ey=(i*83-Date.now()*.018*(1+i%4)+9000)%430;
+   let pulse=.35+.45*(.5+.5*Math.sin(Date.now()/260+i));
+   x.globalAlpha=pulse;x.fillStyle=i%5===0?'#ffe0a0':'#ff7444';
+   x.beginPath();x.arc(ex,ey, i%7===0?2:1,0,Math.PI*2);x.fill();
+ }
+ x.globalAlpha=.12;x.strokeStyle='#ffb15c';x.lineWidth=2;
+ for(let i=0;i<5;i++){let yy=414+i*17+Math.sin(Date.now()/330+i)*3;x.beginPath();x.moveTo(0,yy);x.quadraticCurveTo(240,yy-5,480,yy+2);x.quadraticCurveTo(720,yy+8,960,yy-2);x.stroke()}
+ x.globalAlpha=1;
+ // Subtle frame vignette
+ let vg=x.createRadialGradient(480,240,180,480,240,610);vg.addColorStop(.65,'#00000000');vg.addColorStop(1,'#050b14aa');x.fillStyle=vg;x.fillRect(0,0,W,H);
+}
+
+function hurt(){if(s.invulnUntil>Date.now())return;s.invulnUntil=Date.now()+1150;s.hp--;s.x=Math.max(25,s.x-100);let safe=plats.filter(a=>a[0]+a[2]<=s.x+36).slice(-1)[0]||plats[0];s.x=safe[0]+safe[2]*.5;s.y=safe[1]-39;s.vy=0;if(s.hp<=0){s.hp=3;s.stars=Math.max(0,s.stars-2);modal('SUIT REBOOT','Bunny: “Retreat, Captain. I have recalibrated your suit.”')}save()}
+function update(dt){let old=s.y;s.vx=((keys.right?1:0)-(keys.left?1:0))*230;if(keys.right)s.face=1;if(keys.left)s.face=-1;if(keys.jump&&s.ground){s.vy=-490;s.ground=false}keys.jump=false;s.vy+=1250*dt;s.x=Math.max(0,Math.min(3560,s.x+s.vx*dt));s.y+=s.vy*dt;s.ground=false;for(let a of plats)if(s.vy>=0&&old+39<=a[1]&&s.y+39>=a[1]&&s.x+30>a[0]&&s.x<a[0]+a[2]){s.y=a[1]-39;s.vy=0;s.ground=true}if(s.y>600)hurt();s.cam=Math.max(0,Math.min(2640,s.x-330));stars.forEach(a=>{if(!a.t&&Math.abs(s.x-a.x)<25&&Math.abs(s.y-a.y)<45){a.t=true;s.stars++;save()}});enemy=850+Math.sin(Date.now()/900)*90;
+ // Blaster shots travel horizontally; firing has a short cooldown.
+ if(keys.shoot&&(!s.lastShot||Date.now()-s.lastShot>((s.kills||0)>=5?190:260))){
+  let upgraded=(s.kills||0)>=5;
+  bullets.push({x:s.x+(s.face>0?30:-8),y:s.y+19,vx:s.face*(upgraded?690:560),life:1.1,damage:upgraded?2:1});
+  if(upgraded)bullets.push({x:s.x+(s.face>0?30:-8),y:s.y+26,vx:s.face*650,life:1.0,damage:1});
+  s.lastShot=Date.now()
+ }
+ bullets.forEach(b=>{b.x+=b.vx*dt;b.life-=dt});
+ // Bunny smoothly follows Captain J, hovering slightly above and behind.
+ const targetBX=s.x-(s.face>0?48:-48), targetBY=s.y-42+Math.sin(Date.now()/230)*8;
+ bunny.x+=(targetBX-bunny.x)*Math.min(1,dt*5.5);bunny.y+=(targetBY-bunny.y)*Math.min(1,dt*6);
+ // Bunny fires a small support pulse at the nearest enemy every few seconds.
+ if(Date.now()>bunny.fireAt){
+  let target=enemies.filter(e=>e.alive&&Math.abs(e.x-s.x)<360).sort((a,b)=>Math.abs(a.x-s.x)-Math.abs(b.x-s.x))[0];
+  if(target){bunnyShots.push({x:bunny.x,y:bunny.y,vx:Math.sign(target.x-bunny.x)*430,life:.9});bunny.fireAt=Date.now()+1900}
+ }
+ bunnyShots.forEach(b=>{b.x+=b.vx*dt;b.life-=dt});
+ bunnyShots=bunnyShots.filter(b=>b.life>0&&b.x>0&&b.x<3650);
+ particles.forEach(p=>{p.x+=p.vx*dt;p.y+=p.vy*dt;p.life-=dt});
+ particles=particles.filter(p=>p.life>0);
+ bullets=bullets.filter(b=>b.life>0&&b.x>0&&b.x<3650);
+ enemies.forEach(e=>{
+  if(!e.alive)return;
+  e.x+=e.dir*e.speed*dt;if(e.x<e.min||e.x>e.max)e.dir*=-1;
+  if(e.type==='drone')e.y=300+Math.sin(Date.now()/360+e.x*.01)*34;
+  bullets.forEach(b=>{if(!b.dead&&Math.abs(b.x-e.x)<(e.type==='brute'?24:19)&&Math.abs(b.y-e.y)<22){b.dead=true;e.hp-=(b.damage||1);if(e.hp<=0){e.alive=false;s.ammo=(s.ammo||0)+1;s.kills=(s.kills||0)+1;for(let n=0;n<9;n++)particles.push({x:e.x,y:e.y,vx:(Math.random()-.5)*150,vy:(Math.random()-.5)*150,life:.45})}}});
+  bunnyShots.forEach(b=>{if(!b.dead&&Math.abs(b.x-e.x)<22&&Math.abs(b.y-e.y)<25){b.dead=true;e.hp--;if(e.hp<=0){e.alive=false;s.kills=(s.kills||0)+1;for(let n=0;n<7;n++)particles.push({x:e.x,y:e.y,vx:(Math.random()-.5)*130,vy:(Math.random()-.5)*130,life:.4})}}});
+  if(Math.abs(s.x-e.x)<(e.type==='brute'?31:25)&&Math.abs(s.y+20-e.y)<35&&s.invuln!==true){hurt()}
+ });
+ bullets=bullets.filter(b=>!b.dead);bunnyShots=bunnyShots.filter(b=>!b.dead);
+ if(s.x>3370&&s.boss>0){s.x=3370;s.vx=0;if(!bossActive)showBossIntro()}hud.textContent='♥ '.repeat(s.hp)+' · ★ '+s.stars+'/12 · HOSTILES '+enemies.filter(e=>e.alive).length+' · KING '+s.boss+'/5'}
+function loop(t){raf=1;let dt=Math.min((t-last)/1000,.03);last=t;if(!s.paused){update(dt);draw();requestAnimationFrame(loop)}else raf=0}
+draw();
+</script></body></html>
